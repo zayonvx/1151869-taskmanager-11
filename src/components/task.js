@@ -1,12 +1,18 @@
+import {MONTH_NAMES} from "../const.js";
+import {formatTime} from "../utils.js";
+
 export const createTaskTemplate = (task) => {
   const {description, dueDate, color, repeatingDays, isArchive, isFavorite} = task;
 
-  const date = `23 September`;
-  const time = `16:15`;
+  const isExpired = dueDate instanceof Date && dueDate < Date.now();
+  const isDateShowing = !!dueDate;
+
+  const date = isDateShowing ? `${dueDate.getDate()} ${MONTH_NAMES[dueDate.getMonth()]}` : ``;
+  const time = isDateShowing ? formatTime(dueDate) : ``;
 
   const repeatClass = Object.values(repeatingDays).some(Boolean) ? `card--repeat` : ``;
-  const deadlineClass = `card-deadline`;
-  const archiveButtonInactiveClass = isArchive ? `` : `card_btn--disabled`;
+  const deadlineClass = isExpired ? `card--deadline` : ``;
+  const archiveButtonInactiveClass = isArchive ? `` : `card__btn--disabled`;
   const favoriteButtonInactiveClass = isFavorite ? `` : `card__btn--disabled`;
 
   return `<article class="card card--${color} ${repeatClass} ${deadlineClass}">
@@ -51,5 +57,5 @@ export const createTaskTemplate = (task) => {
           </div>
         </div>
       </div>
-    </article>`
+    </article>`;
 };
