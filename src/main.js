@@ -18,8 +18,8 @@ const render = (container, template, place = `beforeend`) => {
 const MainElement = document.querySelector(`.main`);
 const HeaderElement = MainElement.querySelector(`.main__control`);
 
-const filters = generateFilters();
 const tasks = generateTasks(TASK_COUNT);
+const filters = generateFilters(tasks);
 
 render(HeaderElement, createMenuTemplate());
 render(MainElement, createFilterTemplate(filters));

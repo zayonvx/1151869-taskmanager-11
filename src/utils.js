@@ -8,3 +8,5 @@ export const formatTime = (date) => {
 
   return `${hours}:${minutes}`;
 };
+
+export const isToday = (date) => date.getDate() === new Date().getDate();
