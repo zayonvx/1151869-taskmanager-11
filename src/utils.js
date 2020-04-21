@@ -1,5 +1,10 @@
+export const RenderPosition = {
+  AFTERBEGIN: `afterbegin`,
+  BEFOREBEGIN: `beforebegin`
+};
+
 const castTimeFormat = (value) => {
-  return value < 10 ? `0${value}` : String(value);
+  return `${value}`.padStart(2, `0`);
 };
 
 export const formatTime = (date) => {
@@ -10,3 +15,21 @@ export const formatTime = (date) => {
 };
 
 export const isToday = (date) => date.getDate() === new Date().getDate();
+
+export const createElement = (template) => {
+  const newElement = document.createElement(`div`);
+  newElement.innerHTML = template;
+
+  return newElement.firstChild;
+};
+
+export const render = (container, element, place = RenderPosition.BEFOREBEGIN) => {
+  switch (place) {
+    case RenderPosition.AFTERBEGIN:
+      container.prepend(element);
+      break;
+    case RenderPosition.BEFOREBEGIN:
+      container.append(element);
+      break;
+  }
+};
