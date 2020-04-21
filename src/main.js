@@ -1,4 +1,4 @@
-import MenuComponent  from "./components/site-menu.js";
+import MenuComponent from "./components/site-menu.js";
 import FilterComponent from "./components/filter.js";
 import BoardComponent from "./components/board.js";
 import TaskComponent from "./components/task.js";
@@ -60,7 +60,7 @@ const renderBoard = (boardComponent, tasks) => {
       .forEach((task) => renderTask(taskListElement, task));
 
     if (showingTasksCount >= tasks.length) {
-      loadMoreButtonComponent.getElement().remove;
+      loadMoreButtonComponent.getElement().remove();
       loadMoreButtonComponent.removeElement();
     }
   });
